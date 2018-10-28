@@ -1,0 +1,20 @@
+{
+  "name": "inwebo/foobundle",
+  "description": "Tests",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "inwebo"
+    }
+  ],
+  "autoload": {
+    "psr-4": { "Inwebo\\Bundle\\IpStackBundle\\": "" }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/inwebo/IpStackBundle.git"
+    }
+  ]
+}
