@@ -1,6 +1,0 @@
-parameters:
-    ipstack:
-        access_key: ''
-        base_url: 'https://api.ipstack.com/%s'
-        end_point: '%base_url%'
-        pattern: ''
