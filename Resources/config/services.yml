@@ -1,0 +1,5 @@
+services:
+    inwebo.ipstack.service:
+        class:     Inwebo\Bundle\IpStackBundle\Service\IpStackService
+        arguments: ['@request_stack', '%ipstack_access_key%','%ipstack_end_point%']
+        public:    true;

@@ -1,2 +1,2 @@
 # IpStackBundle
-IpStack ymfony 4 bundle
+IpStack symfony 4 bundle
