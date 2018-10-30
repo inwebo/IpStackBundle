@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: inwebo
- * Date: 30/10/18
- * Time: 20:54
- */
 
 namespace Inwebo\Bundle\IpStackBundle\Model;
 
