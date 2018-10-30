@@ -8,16 +8,25 @@
 
 namespace Inwebo\Bundle\IpStackBundle\Service;
 
+use Inwebo\Bundle\IpStackBundle\Model\ClientInterface;
+use Inwebo\Bundle\IpStackBundle\Model\Factory;
+use Inwebo\Bundle\IpStackBundle\Model\FactoryInterface;
+use Inwebo\Component\IpStack\Model\Response;
+use Inwebo\Component\IpStack\Model\ResponseInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class IpStackService
 {
     /** @var RequestStack */
     protected $requestStack;
+    /** @var ClientInterface */
+    protected $client;
     /** @var string */
-    protected $accessKey;
+    protected $apiKey;
     /** @var string */
     protected $endPoint;
+    /** @var Factory */
+    protected $factory;
 
     /**
      * @return string
@@ -33,20 +42,44 @@ class IpStackService
         return $this->requestStack->getCurrentRequest()->getClientIp();
     }
 
-    public function __construct(RequestStack $requestStack, $accessKey, $endPoint)
+    public function __construct(RequestStack $requestStack, ClientInterface $client, FactoryInterface $factory, string $endPoint, string $apiKey)
     {
         $this->requestStack = $requestStack;
-        $this->accessKey    = $accessKey;
+        $this->factory      = $factory;
+        $this->client       = $client;
+        $this->apiKey       = $apiKey;
         $this->endPoint     = $endPoint;
     }
 
-    public function getIpStack()
+    /**
+     * @return ResponseInterface
+     *
+     * @throws \Exception
+     */
+    public function get()
     {
+        /** @var string $url */
+        $url = $this->getQueryString($this->getIp());
+        /** @var string $json */
+        $json = $this->client->query($url);
 
-        $ip = $this->getIp();
-        $queryString = 'https://api.ipstack.com/';
-        $response = file_get_contents($queryString);
+        try {
+            /** @var ResponseInterface $response */
+            $response = $this->factory->create($json);
+        } catch (\Exception $e) {
+            throw $e;
+        }
 
-        var_dump($response);
+        return $response;
+    }
+
+    /**
+     * @param string $ip
+     *
+     * @return string
+     */
+    public function getQueryString(string $ip)
+    {
+        return sprintf($this->endPoint, $ip, $this->apiKey);
     }
 }
