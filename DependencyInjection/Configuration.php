@@ -25,10 +25,8 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('ipstack')
                     ->isRequired()
                     ->children()
-                        ->scalarNode('access_key')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('base_url')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('end_point')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('pattern')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('ipstack_api_key')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('ipstack_endpoint')->isRequired()->cannotBeEmpty()->end()
                     ->end()
                 ->end() // twitter
             ->end()

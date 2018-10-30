@@ -1,6 +1,6 @@
 {
   "name": "inwebo/ipstackbundle",
-  "description": "Tests",
+  "description": "Geoip Wrapper with Symfony 4 Support",
   "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
@@ -8,8 +8,10 @@
       "name": "inwebo"
     }
   ],
+  "minimum-stability": "dev",
   "require": {
-    "symfony/http-foundation": "^4.1"
+    "php": ">=7.1",
+    "inwebo/ipstack-model": "dev-master"
   },
   "autoload": {
     "psr-4": { "Inwebo\\Bundle\\IpStackBundle\\": "" }

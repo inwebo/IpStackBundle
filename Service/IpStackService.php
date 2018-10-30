@@ -36,8 +36,8 @@ class IpStackService
     public function __construct(RequestStack $requestStack, $accessKey, $endPoint)
     {
         $this->requestStack = $requestStack;
-        $this->accessKey = $accessKey;
-        $this->endPoint = $endPoint;
+        $this->accessKey    = $accessKey;
+        $this->endPoint     = $endPoint;
     }
 
     public function getIpStack()
