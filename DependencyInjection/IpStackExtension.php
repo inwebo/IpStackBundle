@@ -28,6 +28,7 @@ class IpStackExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
 
+        $loader->load('ipstack.yml');
         $loader->load('services.yml');
     }
 

@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('ipstack')
+                ->arrayNode('parameters')
                     ->isRequired()
                     ->children()
                         ->scalarNode('ipstack_api_key')->isRequired()->cannotBeEmpty()->end()
