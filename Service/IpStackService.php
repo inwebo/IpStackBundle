@@ -42,6 +42,14 @@ class IpStackService
         return $this->requestStack->getCurrentRequest()->getClientIp();
     }
 
+    /**
+     * IpStackService constructor.
+     * @param RequestStack $requestStack
+     * @param ClientInterface $client
+     * @param FactoryInterface $factory
+     * @param string $endPoint
+     * @param string $apiKey
+     */
     public function __construct(RequestStack $requestStack, ClientInterface $client, FactoryInterface $factory, string $endPoint, string $apiKey)
     {
         $this->requestStack = $requestStack;
