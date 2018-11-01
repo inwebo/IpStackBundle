@@ -9,9 +9,7 @@
 namespace Inwebo\Bundle\IpStackBundle\Service;
 
 use Inwebo\Bundle\IpStackBundle\Model\ClientInterface;
-use Inwebo\Bundle\IpStackBundle\Model\Factory;
-use Inwebo\Bundle\IpStackBundle\Model\FactoryInterface;
-use Inwebo\Component\IpStack\Model\Response;
+use Inwebo\Component\IpStack\Model\Factory\FactoryInterface;
 use Inwebo\Component\IpStack\Model\ResponseInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -31,24 +29,43 @@ class IpStackService
     /**
      * @return string
      */
+    public function getFrIp()
+    {
+        return "92.154.18.101";
+    }
+
+    /**
+     * @return string
+     */
+    public function getBeIp()
+    {
+        return "5.23.128.12";
+    }
+
+    /**
+     * @return string
+     */
+    public function getLuIp()
+    {
+        return "78.141.128.12";
+    }
+
+    /**
+     * @return string
+     */
     public function getIp()
     {
-        // FR
-        // return "92.154.18.101";
-        // BE
-        // return "5.23.128.12";
-        // LU
-        // return "78.141.128.12";
         return $this->requestStack->getCurrentRequest()->getClientIp();
     }
 
     /**
      * IpStackService constructor.
-     * @param RequestStack $requestStack
-     * @param ClientInterface $client
+     *
+     * @param RequestStack     $requestStack
+     * @param ClientInterface  $client
      * @param FactoryInterface $factory
-     * @param string $endPoint
-     * @param string $apiKey
+     * @param string           $endPoint
+     * @param string           $apiKey
      */
     public function __construct(RequestStack $requestStack, ClientInterface $client, FactoryInterface $factory, string $endPoint, string $apiKey)
     {
