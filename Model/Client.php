@@ -2,6 +2,12 @@
 
 namespace Inwebo\Bundle\IpStackBundle\Model;
 
+use Inwebo\Bundle\IpStackBundle\Model\Exceptions\InvalidJsonPCallbackException;
+use Inwebo\Component\IpStack\Model\IpStack;
+
+/**
+ * Class Client
+ */
 class Client
 {
     /** @var string */
@@ -17,11 +23,11 @@ class Client
     /** @var bool */
     protected $security = false;
     /** @var string|null */
-    protected $language;
+    protected $language = null;
     /** @var string|null */
-    protected $callback;
+    protected $callback = null;
     /** @var string json|xml*/
-    protected $output = 'json';
+    protected $output;
 
     // region getters setters
     /**
@@ -35,7 +41,7 @@ class Client
     /**
      * @param string $enPoint
      */
-    public function setEnPoint(string $enPoint): void
+    protected function setEnPoint(string $enPoint): void
     {
         $this->enPoint = $enPoint;
     }
@@ -169,20 +175,44 @@ class Client
     }
     // endregion
 
-    public function __construct(string $endPoint)
+    /**
+     * JSONP Callbacks can only be used along with the API's output format being set to json
+     *
+     * @return string
+     */
+    public function isValidJsonPCallback()
+    {
+        return $this->getOutput() === IpStack::SUPPORTED_OUTPUT['json'] && !is_null($this->getCallback());
+    }
+
+    /**
+     * Client constructor.
+     *
+     * @param string $endPoint
+     * @param string $output
+     */
+    public function __construct(string $endPoint = IpStack::END_POINT, string $output = IpStack::SUPPORTED_OUTPUT['json'])
     {
         $this->enPoint = $endPoint;
+        $this->output  = $output;
     }
 
     /**
      * @return string
+     *
+     * @throws InvalidJsonPCallbackException
      */
-    public function query()
+    protected function getUrl()
     {
-        $url = $this->enPoint;
-        $_GETArgs = [];
+        $endPoint = $this->enPoint;
 
         $ipAddress = implode(',', $this->getIpAddress());
+
+        $_GETArgs = [];
+
+        $_GETArgs['access_key'] = $this->getAccessKey();
+
+        // @todo fields
 
         if ($this->hostname) {
             $_GETArgs['hostname'] = '1';
@@ -197,18 +227,35 @@ class Client
         }
 
         if (!is_null($this->callback)) {
-            $_GETArgs['callback'] = $this->callback;
+            if ($this->isValidJsonPCallback()) {
+                $_GETArgs['callback'] = $this->callback;
+            } else {
+                throw new InvalidJsonPCallbackException();
+            }
         }
 
         if (!is_null($this->output)) {
             $_GETArgs['output'] = $this->output;
         }
 
-        $_GETString = '?' . implode('&', $_GETArgs);
+        $_GETString = '?' . http_build_query($_GETArgs);
 
-        $url = $url . $ipAddress . $_GETString;
+        return $endPoint . $ipAddress . $_GETString;
+    }
 
-        $json = file_get_contents($url);
+    /**
+     * @return string Json
+     *
+     * @throws \Exception|InvalidJsonPCallbackException
+     */
+    public function query()
+    {
+        try {
+            $url = $this->getUrl();
+            $json = file_get_contents($url);
+        } catch (\Exception $e) {
+            throw $e;
+        }
 
         return $json;
     }

@@ -11,7 +11,8 @@
   "minimum-stability": "dev",
   "require": {
     "php": ">=7.1",
-    "inwebo/ipstack-model": "dev-master"
+    "inwebo/ipstack-model": "dev-master",
+    "doctrine/doctrine-bundle": "^1.9"
   },
   "autoload": {
     "psr-4": { "Inwebo\\Bundle\\IpStackBundle\\": "" }
