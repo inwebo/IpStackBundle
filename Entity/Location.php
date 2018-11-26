@@ -33,7 +33,7 @@ class Location extends BaseLocation
      */
     protected $languages;
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=4)
      */
     protected $countryFlag;
     /**
