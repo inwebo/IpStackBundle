@@ -12,18 +12,25 @@ use Inwebo\Component\IpStack\Model\Location as BaseLocation;
 
 /**
  * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LocationRepository")
+ *
+ * @ORM\Table(name="ipstack__location")
  */
 class Location extends BaseLocation
 {
+
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Id
+     * @ORM\Column(type="integer")
      */
     protected $geonameId;
     /**
      * @ORM\Column(type="string", length=15)
      */
     protected $capital;
-    /** @var Languages */
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Inwebo\Bundle\IpStackBundle\Entity\Language")
+     */
     protected $languages;
     /**
      * @ORM\Column(type="string", length=15)
