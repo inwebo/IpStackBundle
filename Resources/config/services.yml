@@ -1,4 +1,0 @@
-services:
-    iw_ipstack:
-        class: Inwebo\Bundle\IpStackBundle\Service\IpStackService
-        arguments: ['@request_stack', '%ipstack_api_key%', '%ipstack_endpoint%']
