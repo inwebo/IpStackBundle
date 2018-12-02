@@ -11,7 +11,7 @@ namespace Inwebo\Bundle\IpStackBundle\Entity;
 use Inwebo\Component\IpStack\Model\Language as BaseLanguage;
 
 /**
- * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LocationRepository")
+ * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LanguageRepository")
  *
  * @ORM\Table(name="ipstack__language")
  */
@@ -19,13 +19,8 @@ class Language extends BaseLanguage
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\Column(type="string", length=2)
+     *
      */
     protected $code;
     /**
@@ -36,20 +31,4 @@ class Language extends BaseLanguage
      * @ORM\Column(type="string", length=15)
      */
     protected $native;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
 }
