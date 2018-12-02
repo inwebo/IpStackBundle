@@ -1,3 +1,0 @@
-parameters:
-    ipstack_api_key:
-    ipstack_endpoint: 'https://api.ipstack.com/%s?access_key=%s'
