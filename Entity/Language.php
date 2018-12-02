@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: inwebo
- * Date: 25/11/18
- * Time: 15:02
- */
-
 namespace Inwebo\Bundle\IpStackBundle\Entity;
 
 use Inwebo\Component\IpStack\Model\Language as BaseLanguage;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LanguageRepository")
@@ -20,15 +16,29 @@ class Language extends BaseLanguage
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=2)
-     *
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 2
+     * )
      */
     protected $code;
     /**
      * @ORM\Column(type="string", length=15)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 22
+     * )
      */
     protected $name;
     /**
      * @ORM\Column(type="string", length=15)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 31
+     * )
      */
     protected $native;
 }
