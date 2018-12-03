@@ -8,11 +8,12 @@
       "name": "inwebo"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "php": ">=7.1",
     "inwebo/ipstack-model": "^1.0",
-    "doctrine/doctrine-bundle": "^1.9"
+    "doctrine/doctrine-bundle": "^1.9",
+    "doctrine/doctrine-fixtures-bundle": "^3.0",
+    "symfony/finder": "^4.2"
   },
   "autoload": {
     "psr-4": { "Inwebo\\Bundle\\IpStackBundle\\": "" }
