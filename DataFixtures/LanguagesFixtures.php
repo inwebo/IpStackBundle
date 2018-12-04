@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: inwebo
- * Date: 02/12/18
- * Time: 18:46
- */
 
 namespace Inwebo\Bundle\IpStackBundle\DataFixtures;
-
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
