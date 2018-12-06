@@ -4,6 +4,7 @@ namespace Inwebo\Bundle\IpStackBundle\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Inwebo\Bundle\IpStackBundle\Entity\Language;
 use Symfony\Component\Finder\Finder;
 
 class LanguagesFixtures extends Fixture
