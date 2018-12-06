@@ -1,4 +1,0 @@
-services:
-    iw_fixtures.languages:
-        class: Inwebo\Bundle\IpStackBundle\DataFixtures\LanguagesFixtures
-        tags: ['doctrine.fixture.orm']

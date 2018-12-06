@@ -14,9 +14,9 @@ class IpStackExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config/') );
 
         try {
-            $loader->load('services.yaml');
+            // @todo
         } catch (\Exception $e) {
-
+            // @todo
         }
 
     }
