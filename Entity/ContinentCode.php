@@ -4,6 +4,9 @@ namespace Inwebo\Bundle\IpStackBundle\Entity;
 
 use Inwebo\Component\IpStack\Model\ContinentCode as BaseContinentCode;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LanguageRepository")
  *
