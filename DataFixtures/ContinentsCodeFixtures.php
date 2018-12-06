@@ -11,7 +11,7 @@ namespace Inwebo\Bundle\IpStackBundle\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Inwebo\Component\IpStack\Model\ContinentCodesEnum;
+use Inwebo\Component\IpStack\Model\ContinentCode;
 
 class ContinentsCodeFixtures extends Fixture
 {
@@ -21,12 +21,12 @@ class ContinentsCodeFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         try {
-            $reflectionClass = new \ReflectionClass(ContinentCodesEnum::class);
+            $reflectionClass = new \ReflectionClass(ContinentCode::class);
             /** @var array $consts */
-            $consts = $reflectionClass->getConstants();
+            $constants = $reflectionClass->getConstants();
 
-            foreach ($consts as $key => $value) {
-                
+            foreach ($constants as $key => $value) {
+                dump($key, $value);
             }
         } catch (\Exception $e) {
 
