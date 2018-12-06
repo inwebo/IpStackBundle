@@ -4,6 +4,11 @@ namespace Inwebo\Bundle\IpStackBundle\Entity;
 
 use Inwebo\Component\IpStack\Model\ContinentCode as BaseContinentCode;
 
+/**
+ * @ORM\Entity(repositoryClass="Inwebo\Bundle\IpStackBundle\Entity\LanguageRepository")
+ *
+ * @ORM\Table(name="ipstack__continent_code")
+ */
 class ContinentCode extends BaseContinentCode
 {
     /**

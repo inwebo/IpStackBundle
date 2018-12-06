@@ -19,6 +19,24 @@ class LanguagesFixtures extends Fixture
             ->files()
             ->name('iso-639-1.json');
 
+        foreach ($dataFixture as $item) {
+            $jsonStringString = $item->getContents();
+            $languagesJSON = json_decode($jsonStringString, true);
+
+            foreach ($languagesJSON as $key => $value) {
+
+                $language = new Language();
+                $language->setCode($value['code']);
+                $language->setName($value['name']);
+                $language->setNative($value['native']);
+
+
+                $manager->persist($language);
+            }
+
+            $manager->flush();
+
+        }
 
     }
 }

@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: inwebo
- * Date: 04/12/18
- * Time: 22:31
- */
 
 namespace Inwebo\Bundle\IpStackBundle\DataFixtures;
 
-
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Inwebo\Component\IpStack\Model\ContinentCode;
+
+use Inwebo\Bundle\IpStackBundle\Entity\ContinentCode;
 
 class ContinentsCodeFixtures extends Fixture
 {
@@ -26,8 +20,12 @@ class ContinentsCodeFixtures extends Fixture
             $constants = $reflectionClass->getConstants();
 
             foreach ($constants as $key => $value) {
-                dump($key, $value);
+                $continentCode = new ContinentCode($key, $value);
+                $manager->persist($continentCode);
             }
+
+            $manager->flush();
+
         } catch (\Exception $e) {
 
         }
